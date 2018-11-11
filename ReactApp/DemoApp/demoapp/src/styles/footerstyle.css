@@ -1,0 +1,26 @@
+.app-content {
+  margin-top: 0.5em!important;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.app-content .row > [class^="col"] {
+    padding-top: .75rem;
+    padding-bottom: .75rem;
+    background-color: #E5EDF5;
+    border: 1px solid #C9C1D5;
+    color: #5F5F5F;
+}
+
+footer {
+  text-align: center;
+  color: white;
+  
+  padding-bottom: 20px;
+  position: fixed;
+  
+  width:100%;
+  background: linear-gradient(to right, #000000, #434343);
+}
+
+

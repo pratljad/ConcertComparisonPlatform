@@ -1,0 +1,14 @@
+.input-group {
+  padding-left: 5%;
+  padding-right: 5%;
+  text-align: center;
+}
+
+.myNav {
+  background: linear-gradient(to right, #000000, #434343);
+}
+
+body {
+  height: 100%;
+  min-height: 100%;
+}

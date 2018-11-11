@@ -1,0 +1,113 @@
+body {
+    background: linear-gradient(to right, #000000, #434343);
+    background-size:cover;
+}
+.search {
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    width:80px;
+    height:80px;
+    background:#fff;
+    box-shadow:0 5px 20px rgba(0,0,0,.5);
+    border-radius:4px;
+    transition:width .5s;
+    overflow:hidden;
+}
+.search.active {
+    width:50%;
+}
+.search input {
+    position:relative;
+    top:10px;
+    left:10px;
+    width:calc(100% - 90px);
+    height:60px;
+    border:none;
+    outline:none;
+    font-size-adjust: 0.58;
+    padding:0 10px;
+    color:#666;
+    
+}
+.search.active .icon {
+    background:#ff355a;
+}
+.icon {
+    position:absolute;
+    top:10px;
+    right:10px;
+    width:60px;
+    height:60px;
+    cursor:pointer;
+    transition:.5s;
+    border-radius:4px;
+}
+.search.active .icon:before {
+    content:'\d7';
+    color: white;
+    position:relative;
+    left: 25px;
+    top: 16px;
+    size: 60px;
+    background:transparent;
+    border:none;
+}
+.search.active .icon:after {
+    color: white;
+    position: absolute;
+    background:transparent;
+    border:none;
+}
+.icon:before {
+    content:'';
+    position:absolute;
+    top:12px;
+    left:12px;
+    width:24px;
+    height:24px;
+    background:transparent;
+    border:2px solid #262626;
+    border-radius:50%;
+    transition:.5%;
+}
+.icon:after {
+    content:'';
+    position:absolute;
+    top:25px;
+    left:35px;
+    width:18px;
+    height:18px;
+    background:transparent;
+    border-left:2px solid #262626;
+    border-radius:0;
+    transform:rotate(-45deg);
+    transition:.5%;
+}
+
+/*Table Styles*/
+h1 {
+    color: white;
+    position: absolute;
+
+    text-align: center;
+    width: 75%;
+    left:50%;
+    transform:translate(-50%,70%);
+}
+
+.badge.badge-secondary {
+    background: white;
+    color: #000000;
+}
+
+.table {
+    color: white;
+    position: absolute;
+    top: 70%;
+    /*visibility: hidden;*/
+
+    width: 60%;
+    transform:translate(0%, 10%);
+}
