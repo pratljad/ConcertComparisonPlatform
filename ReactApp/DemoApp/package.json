@@ -15,13 +15,5 @@
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "reactstrap": "^6.4.0"
-  },
-  "buildpacks": [
-    {
-      "url": "https://github.com/pratljad/ConcertComparisonPlatform"
-    },
-    {
-      "url": "heroku/nodejs"
-    }
-  ]
+  }
 }
