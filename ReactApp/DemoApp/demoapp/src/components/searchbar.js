@@ -16,7 +16,10 @@ constructor(props) {
     };
 }
 toggle() {
-    $('.search').toggleClass('active');
+    if(this.state.active === false) {
+        $('.search').toggleClass('active');
+        console.log("Active");
+    }
 }  
 
 find(e) {
@@ -25,7 +28,7 @@ find(e) {
 
 render() {
     return (
-      <div className="container">
+      <div className="row">
         <h1><span className="badge badge-secondary">New</span> [{artistName}] Tour 2018/19</h1>
             <div className="search">
                 <input type="text" placeholder="Search..." onKeyDown={this.find}/>

@@ -13,13 +13,12 @@ body {
     box-shadow:0 5px 20px rgba(0,0,0,.5);
     border-radius:4px;
     transition:width .5s;
-    overflow:hidden;
 }
 .search.active {
     width:50%;
 }
 .search input {
-    position:relative;
+    position:fixed;
     top:10px;
     left:10px;
     width:calc(100% - 90px);
