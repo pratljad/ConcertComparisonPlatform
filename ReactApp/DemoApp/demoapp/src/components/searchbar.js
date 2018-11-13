@@ -18,12 +18,28 @@ constructor(props) {
 toggle() {
     if(this.state.active === false) {
         $('.search').toggleClass('active');
-        console.log("Active");
+        this.setState({active: true}); 
+    }
+
+    else {
+        console.log("This searchbar is already active.");
     }
 }  
 
 find(e) {
-    console.log(e.keyCode);
+    if(e.keyCode === 13) {
+        console.log("Enter pressed.");
+        const s = document.getElementById("input_search").value;
+
+        artists.forEach(function (name) {
+            if(name.toLocaleLowerCase() === s.toLocaleLowerCase()) {
+                console.log("Got a hit");
+            }
+
+        });
+        console.log(s);
+
+    }
 }
 
 render() {
@@ -31,7 +47,7 @@ render() {
       <div className="row">
         <h1><span className="badge badge-secondary">New</span> [{artistName}] Tour 2018/19</h1>
             <div className="search">
-                <input type="text" placeholder="Search..." onKeyDown={this.find}/>
+                <input type="text" id="input_search" placeholder="Search..." onKeyDown={this.find}/>
                 <div className="icon" onClick={this.toggle}></div>
             </div>
         </div> 
