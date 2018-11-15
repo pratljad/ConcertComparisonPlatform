@@ -4,6 +4,7 @@ import '../styles/searchbar.css';
 import React from 'react';
 import $ from 'jquery';
 
+
 const artistName = "UFO361";
 const artists = ["UFO361", "Captial Bra", "Rolexesh"];
 
@@ -19,6 +20,7 @@ toggle() {
     if(this.state.active === false) {
         $('.search').toggleClass('active');
         this.setState({active: true}); 
+        this.fetchDataFromOE();
     }
 
     else {
@@ -40,6 +42,24 @@ find(e) {
         console.log(s);
 
     }
+}
+
+fetchDataFromOE() {
+    const proxyurl = "https://cors-anywhere.herokuapp.com/";
+    const url = "https://www.eventim.de/yung-hurn-1220-tour-tickets.html?affiliate=TUG&doc=artistPages%2Ftickets&fun=artist&action=tickets&erid=2181665&kuid=542198"; // site that doesn’t send Access-Control-*
+    fetch(proxyurl + url) 
+    .then(response => response.text())
+    .then(contents => {
+        console.log(contents);
+        const tempWidgetContent = contents.match(/w\d+\.isHidden(.*)\(\) == false\)[\s\S]*?catch\(err\)\{ \}/gm);
+
+        for (var i = 0; i < tempWidgetContent.length; i++) {
+            const widgetContent = tempWidgetContent[i].substring(tempWidgetContent[i].indexOf('{') + 1);
+            console.log(widgetContent);
+        }
+        console.log(contents);
+    });/*
+    .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))*/
 }
 
 render() {
