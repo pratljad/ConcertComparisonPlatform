@@ -4,7 +4,6 @@ import LoginPage from './pages/loginpage.js';
 import RegisterPage from './pages/registerpage.js';
 import StartingPage from './pages/startingpage.js';
 import ResultPage from './pages/resultpage.js';
-import CheckoutPage from './pages/checkoutpage.js';
 
 export default class App extends React.Component {
   render() {
@@ -15,7 +14,6 @@ export default class App extends React.Component {
           <Route path="/login" component={LoginPage} />
           <Route path="/register" component={RegisterPage} />
           <Route path="/results" component={ResultPage} />
-          /*<Route path="/checkout" component={CheckoutPage} />*/
         </div>
       </BrowserRouter>
     );

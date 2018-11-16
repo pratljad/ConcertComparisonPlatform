@@ -1,0 +1,4 @@
+[Pratljacic Dragan]
+- Bash Script zur Installation wichtiger node_modules
+- Sample Page um die Suchresultate anzuzeigen
+- Arbeiten an Fetch Funktion
