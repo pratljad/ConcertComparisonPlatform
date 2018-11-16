@@ -62,5 +62,17 @@ create table Takes_Place (
     foreign key (CLID) references ConcertLocation(CLID)
 );
 
+insert into Artist values (1, 'UFO361');
+insert into Artist values (2, 'Capital Bra');
+insert into Artist values (3, 'Drake');
+insert into Artist values (4, 'Trettmann');
+insert into Artist values (5, 'Gzuz');
+
+insert into Genre values (1, 'Pop');
+insert into Genre values (2, 'Rap');
+insert into Genre values (3, 'Jazz');
+insert into Genre values (4, 'Rock');
+insert into Genre values (5, 'Klassik');
+
 
 
