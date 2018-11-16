@@ -17,16 +17,16 @@ constructor(props) {
     };
 }
 toggle() {
-    if(this.state.active === false) {
+    //if(this.state.active === false) {
         $('.search').toggleClass('active');
-        this.setState({active: true}); 
-        this.fetchDataFromOE();
-    }
+        //this.setState({active: true}); 
+        //this.fetchDataFromOE();
+    //}
 
-    else {
-        console.log("This searchbar is already active.");
-    }
-}  
+    //else {
+        //console.log("This searchbar is already active.");
+    //}
+}
 
 find(e) {
     if(e.keyCode === 13) {
@@ -47,7 +47,7 @@ find(e) {
 fetchDataFromOE() {
     const proxyurl = "https://cors-anywhere.herokuapp.com/";
     const url = "https://www.eventim.de/yung-hurn-1220-tour-tickets.html?affiliate=TUG&doc=artistPages%2Ftickets&fun=artist&action=tickets&erid=2181665&kuid=542198"; // site that doesn’t send Access-Control-*
-    fetch(proxyurl + url) 
+    fetch(proxyurl + url)
     .then(response => response.text())
     .then(contents => {
         console.log(contents);
@@ -70,7 +70,7 @@ render() {
                 <input type="text" id="input_search" placeholder="Search..." onKeyDown={this.find}/>
                 <div className="icon" onClick={this.toggle}></div>
             </div>
-        </div> 
+        </div>
     );
   }
 }
