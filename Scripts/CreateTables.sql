@@ -74,5 +74,38 @@ insert into Genre values (3, 'Jazz');
 insert into Genre values (4, 'Rock');
 insert into Genre values (5, 'Klassik');
 
+insert into AppUser values(1, 'einsUser', 'einsPassword');
+insert into AppUser values(2, 'zweiUser', 'zweiPassword');
+insert into AppUser values(3, 'dreiUser', 'dreiPassword');
+insert into AppUser values(4, 'vierUser', 'vierPassword');
+insert into AppUser values(5, 'fuenfUser', 'fuenfPassword');
 
+insert into Favourites values (1,1);
+insert into Favourites values (2,2);
+insert into Favourites values (3,3);
+insert into Favourites values (4,4);
+insert into Favourites values (5,5);
 
+insert into Affilation values (1,1);
+insert into Affilation values (2,2);
+insert into Affilation values (3,3);
+insert into Affilation values (4,4);
+insert into Affilation values (5,5);
+
+insert into Concert values (1,1,'RIP Ufo361');
+insert into Concert values (2,2,'Nur noch Gucci');
+insert into Concert values (3,3,'Unwichtig');
+insert into Concert values (4,4,'Bla Bla');
+insert into Concert values (5,5,'Bleampe Tour');
+
+insert into ConcertLocation values (1, 9500, 'Austria', 'Villach', 'Muldenweg 20');
+insert into ConcertLocation values (2, 9241, 'Austria', 'Wernberg', 'Wasenweg 2');
+insert into ConcertLocation values (3, 1220, 'Austria', 'Wien', 'Kärntner Straße 4');
+insert into ConcertLocation values (4, 9020, 'Austria', 'Klagenfurt', 'Südring 6');
+insert into ConcertLocation values (5, 9500, 'Austria', 'Villach', 'Tschinowitscherweg 2');
+
+insert into Takes_Place values (1,1);
+insert into Takes_Place values (2,2);
+insert into Takes_Place values (3,3);
+insert into Takes_Place values (4,4);
+insert into Takes_Place values (5,5);
