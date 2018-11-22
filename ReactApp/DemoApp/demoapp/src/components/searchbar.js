@@ -21,7 +21,7 @@ toggle() {
         $('.search').toggleClass('active');
         //this.loadGraphicCards(1);
         //this.setState({active: true});
-        this.fetchDataFromOE();
+        //this.fetchDataFromOE();
     //}
 
     //else {
@@ -51,9 +51,9 @@ fetchDataFromOE() {
     fetch(url)
     .then(response => response.text())
     .then(contents => {
-        console.log(contents);
-        var html = $.parseHTML(contents);
-        console.log(html);
+        console.log($.parseHTML(contents));
+        var tempDom = $('<output>').append($.parseHTML(contents));
+        var appContainer = $('<script type="application/ld+json">', tempDom);
     })
     .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"));
 }
