@@ -17,4 +17,13 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="TextViewMyTheme">
+        <item name="android:background">#000</item>
+        <item name="android:textColor">#fff</item>
+    </style>
+    <style name="App_ConsertList_Items_Text_Artist">
+        <item name="android:background">#ffffff</item>
+        <item name="android:textColor">@color/colorAccent</item>
+    </style>
+
 </resources>

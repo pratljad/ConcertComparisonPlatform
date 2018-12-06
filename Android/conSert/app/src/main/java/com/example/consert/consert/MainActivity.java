@@ -1,5 +1,6 @@
 package com.example.consert.consert;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_consert);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -46,6 +48,7 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View v){
                 //Code here executes on main thread after user presses button
                 Toast.makeText(getApplicationContext(),"ToDo: Connect DB and load found data.", Toast.LENGTH_LONG).show();
+                startActivity(new Intent(MainActivity.this, ConcertList_Activity.class));
             }
         });
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
