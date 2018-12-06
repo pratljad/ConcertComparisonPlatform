@@ -14,7 +14,7 @@ public class ConcertList_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_concertlist);
 
-        TableRow tmp_OnClickTableRow = (TableRow) findViewById(R.id.tblRow_COncert1);
+        TableRow tmp_OnClickTableRow = (TableRow) findViewById(R.id.tblRow_Concert1);
         tmp_OnClickTableRow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

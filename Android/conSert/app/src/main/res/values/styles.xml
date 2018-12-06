@@ -1,7 +1,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -24,6 +24,10 @@
     <style name="App_ConsertList_Items_Text_Artist">
         <item name="android:background">#ffffff</item>
         <item name="android:textColor">@color/colorAccent</item>
+    </style>
+
+    <style name="App_WhiteText">
+        <item name="android:textColor">#fff</item>
     </style>
 
 </resources>
