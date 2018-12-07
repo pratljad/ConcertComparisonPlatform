@@ -21,7 +21,7 @@ toggle() {
         $('.search').toggleClass('active');
         //this.loadGraphicCards(1);
         //this.setState({active: true});
-        //this.fetchDataFromOE();
+        this.fetchDataFromOE();
     //}
 
     //else {
@@ -46,16 +46,16 @@ find(e) {
 }
 
 fetchDataFromOE() {
-    const proxyurl = "https://cors-anywhere.herokuapp.com/";
-    const url = "https://www.eventim.de/yung-hurn-1220-tour-tickets.html?affiliate=TUG&doc=artistPages%2Ftickets&fun=artist&action=tickets&erid=2181665&kuid=542198"; // site that doesn’t send Access-Control-*
-    fetch(url)
-    .then(response => response.text())
-    .then(contents => {
-        console.log($.parseHTML(contents));
-        var tempDom = $('<output>').append($.parseHTML(contents));
-        var appContainer = $('<script type="application/ld+json">', tempDom);
-    })
-    .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"));
+    var proxy = "http://anyorigin.com/go?url=";
+    var url = encodeURIComponent("https://www.oeticket.com/bonez-mc-raf-camora-palmen-aus-plastik-2-tour-2019-tickets.html?affiliate=EOE&doc=artistPages%2Ftickets&fun=artist&action=tickets&erid=1967835&kuid=502401"); // site that doesn’t send Access-Control-*
+    var addition = "&callback=?";
+    $.getJSON('http://allorigins.me/get?url=' + url + '&callback=?', function(data){
+        
+        
+        
+        //console.log("REGEX: "+ data.contents.split("var initEvents").split("}];"));
+
+    });
 }
 
 render() {
