@@ -14,7 +14,7 @@ export default class Results extends React.Component {
                 <div className="col-lg-12">
                     <div className="ibox float-e-margins scrollClass">
                             <h2>
-                                160 results found for: <span className="text-navy">"UFO361"</span>
+                                <b>4 results found for: <span className="text-navy">"UFO361"</span></b>
                             </h2>
                             <br />
                 
