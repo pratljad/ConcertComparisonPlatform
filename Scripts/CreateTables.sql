@@ -42,6 +42,7 @@ create table Affilation (
 create table Concert (
     CID int primary key,
     AID int,
+    ConcertDate date,
     Description varchar2(500),
     foreign key (AID) references Artist(AID)
 );
@@ -92,11 +93,11 @@ insert into Affilation values (3,3);
 insert into Affilation values (4,4);
 insert into Affilation values (5,5);
 
-insert into Concert values (1,1,'RIP Ufo361');
-insert into Concert values (2,2,'Nur noch Gucci');
-insert into Concert values (3,3,'Unwichtig');
-insert into Concert values (4,4,'Bla Bla');
-insert into Concert values (5,5,'Bleampe Tour');
+insert into Concert values (1,1, TO_DATE('01.01-2018','DD.MM.YYYY'),'RIP Ufo361');
+insert into Concert values (2,2, TO_DATE('04.02.2018','DD.MM.YYYY'), 'Nur noch Gucci');
+insert into Concert values (3,3, TO_DATE('05.03.2018','DD.MM.YYYY'),'Unwichtig');
+insert into Concert values (4,4,TO_DATE('12.05.2018','DD.MM.YYYY'), 'Bla Bla');
+insert into Concert values (5,5,TO_DATE('21.06.2018','DD.MM.YYYY'),'Bleampe Tour');
 
 insert into ConcertLocation values (1, 9500, 'Austria', 'Villach', 'Muldenweg 20');
 insert into ConcertLocation values (2, 9241, 'Austria', 'Wernberg', 'Wasenweg 2');
