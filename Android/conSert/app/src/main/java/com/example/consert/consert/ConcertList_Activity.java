@@ -15,7 +15,7 @@ public class ConcertList_Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_concertlist);
-
+        //init();
         TableRow tmp_OnClickTableRow = (TableRow) findViewById(R.id.tblRow_Concert1);
         tmp_OnClickTableRow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -28,29 +28,34 @@ public class ConcertList_Activity extends AppCompatActivity {
 
     }
 
-    TextView tmp_txtView_concertTitle ;
-    TextView tmp_txtView_artist ;
+    TextView tmp_txtView_concertTitle;
+    TextView tmp_txtView_artist;
+    TextView tmp_txtView_concertDate;
+    TableRow new_row;
+
     public void init(){
-        TableLayout ll = (TableLayout) findViewById(R.id.tblLayout_concertList);
+        TableLayout tbl_Layout = (TableLayout) findViewById(R.id.tblLayout_concertList);
         tmp_txtView_concertTitle = (TextView)getLayoutInflater().inflate(R.layout.template_textview_concerttitle, null);
-        tmp_txtView_artist= (TextView)getLayoutInflater().inflate(R.layout.template_textview_concerttitle, null);
+        tmp_txtView_artist= (TextView)getLayoutInflater().inflate(R.layout.template_textview_artist, null);
+        tmp_txtView_concertDate= (TextView)getLayoutInflater().inflate(R.layout.template_textview_date, null);
         //ToDo: change length depending on the given backs list
 
-        for (int i = 0; i <2; i++) {
-
-            TableRow new_row= new TableRow(this);
+        for (int i = 0; i <5; i++) {
+            new_row= new TableRow(this);
             TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
             new_row.setLayoutParams(lp);
-            tmp_txtView_concertTitle = new TextView(this);
-            //ToDo: need to get data from WebService/Database
-            tmp_txtView_concertTitle.setText("DemoTitle");
-            tmp_txtView_concertTitle.setMaxLines(2);
-            tmp_txtView_concertTitle.setTextSize(18);
-
+            //ToDo: need to take data from WebService/Database
+            tmp_txtView_concertTitle.setText("Title: " + i);
+            tmp_txtView_artist.setText("Artist: " + i);
+            tmp_txtView_concertDate.setText("Date: " + i);
+            //tmp_txtView_concertTitle.setText("DemoTitle");
+            //tmp_txtView_concertTitle.setMaxLines(2);
+            //tmp_txtView_concertTitle.setTextSize(18);
 
             new_row.addView(tmp_txtView_concertTitle);
-            ll.addView(new_row,i);
+            new_row.addView(tmp_txtView_artist);
+            new_row.addView(tmp_txtView_concertDate);
+            tbl_Layout.addView(new_row,i);
         }
     }
-
 }

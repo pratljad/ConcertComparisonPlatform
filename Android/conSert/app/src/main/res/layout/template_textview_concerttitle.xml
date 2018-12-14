@@ -10,7 +10,6 @@
         android:layout_height="wrap_content"
         android:maxLines="2"
         android:padding="5dp"
-        android:text="Lake Festival"
         android:textSize="18sp"
         android:textStyle="bold" />
 

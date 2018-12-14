@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">conSert</string>
+    <string name="app_concertListTitle">Ergebnisse...</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_subtitle">Enjoy your conSert!</string>
@@ -8,11 +9,22 @@
     <string name="nav_header_shoppingCart">Shopping Cart</string>
     <string name="nav_header_history">History</string>
     <string name="action_settings">Settings</string>
+    <string name="action_login">Login</string>
     <string name="demo">Demo</string>
     <string name="content_main_go">Go!</string>
 
 
-    <string name="lipson_generated_text">
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ut tincidunt ex. Donec at ultrices ligula. Phasellus euismod metus id elit pulvinar volutpat. Proin tincidunt, odio in aliquet pharetra, justo nulla vehicula erat, at dapibus orci ipsum in lectus. Praesent ipsum libero, imperdiet ut viverra nec, lacinia ac odio. Donec maximus placerat tellus, et lacinia diam. Praesent tempor tellus quis efficitur aliquam. Praesent vulputate enim lectus, id vulputate risus tincidunt sit amet. In volutpat orci et malesuada porttitor. Proin lacinia massa ac lorem fringilla, maximus tincidunt magna gravida.</string>
+    <string name="lipson_generated_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ut tincidunt ex. Donec at ultrices ligula. Phasellus euismod metus id elit pulvinar volutpat. Proin tincidunt, odio in aliquet pharetra, justo nulla vehicula erat, at dapibus orci ipsum in lectus. Praesent ipsum libero, imperdiet ut viverra nec, lacinia ac odio. Donec maximus placerat tellus, et lacinia diam. Praesent tempor tellus quis efficitur aliquam. Praesent vulputate enim lectus, id vulputate risus tincidunt sit amet. In volutpat orci et malesuada porttitor. Proin lacinia massa ac lorem fringilla, maximus tincidunt magna gravida.</string>
+    <string name="title_activity_login">Sign in</string>
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_empty_password">You have to fill in a password</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email completions."</string>
 </resources>

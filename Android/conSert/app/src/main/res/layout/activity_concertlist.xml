@@ -1,49 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/layout_ConcertList"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/side_nav_bar">
+    android:background="@drawable/side_nav_bar"
+    android:columnCount="2">
+
 
     <ScrollView
         android:id="@+id/scrollView_Concerts"
-        android:layout_width="368dp"
-        android:layout_height="495dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_rowWeight="1"
+        android:layout_columnWeight="1"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
 
         <TableLayout
             android:id="@+id/tblLayout_concertList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             android:shrinkColumns="0"
             android:stretchColumns="1">
-
-            <!-- everything you already have -->
-
+-
             <TableRow
                 android:id="@+id/tblRow_Concert1"
-                android:background="@drawable/border_consertlist"
-                android:paddingTop="0dp"
-                android:paddingBottom="0dp"
                 android:layout_marginTop="3dp"
-                android:layout_marginBottom="3dp">
-
-                //change imagesize as per devices
+                android:layout_marginBottom="3dp"
+                android:background="@drawable/border_consertlist">
 
                 <TextView
                     android:id="@+id/txt_concertName"
-
                     style="@style/TextViewMyTheme"
                     android:layout_width="133dp"
                     android:layout_height="wrap_content"
@@ -59,22 +45,24 @@
                     android:layout_width="133dp"
                     android:layout_height="wrap_content"
                     android:maxLines="2"
-                    android:text=" Imagine Dragons"
+                    android:text="Imagine Dragons"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/txt_date"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
                     android:maxLines="2"
-                    android:text="20.03.2019"
-                    android:layout_marginEnd="5dp"/>
+                    android:text="20.03.2019" />
+
+
             </TableRow>
 
             <TableRow
                 android:id="@+id/tblRow_Concert2"
-                android:background="@drawable/border_consertlist"
                 android:layout_marginTop="3dp"
                 android:layout_marginBottom="3dp"
+                android:background="@drawable/border_consertlist"
                 android:paddingTop="0dp"
                 android:paddingBottom="0dp">
 
@@ -102,14 +90,15 @@
                 <TextView
                     android:id="@+id/txt_date2"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
                     android:maxLines="2"
-                    android:text="02.11.2022"
-                    android:layout_marginEnd="5dp"/>
+                    android:text="02.11.2022" />
             </TableRow>
+
 
         </TableLayout>
 
     </ScrollView>
 
 
-</android.support.constraint.ConstraintLayout>
+</GridLayout>
