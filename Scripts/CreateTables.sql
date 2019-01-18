@@ -82,6 +82,12 @@ create table Takes_Place (
     foreign key (CLID) references ConcertLocation(CLID)
 );
 
+--create sequences
+CREATE SEQUENCE artist_seq START WITH 1;
+CREATE SEQUENCE genre_seq START WITH 1;
+CREATE SEQUENCE appUser_seq START WITH 1;
+CREATE SEQUENCE concert_seq START WITH 1;
+CREATE SEQUENCE concertLocation_seq START WITH 1;
 
 --Trigger
 CREATE OR REPLACE TRIGGER ART_AI 
@@ -92,7 +98,7 @@ BEGIN
   INTO   :new.aid
   FROM   dual;
 END;
-
+/
 
 CREATE OR REPLACE TRIGGER Genre_Trig 
 BEFORE INSERT ON Genre 
@@ -102,7 +108,7 @@ BEGIN
   INTO   :new.gid
   FROM   dual;
 END;
-
+/
 
 CREATE OR REPLACE TRIGGER AppUser_Trig 
 BEFORE INSERT ON AppUser 
@@ -112,7 +118,7 @@ BEGIN
   INTO   :new.userid
   FROM   dual;
 END;
-
+/
 
 CREATE OR REPLACE TRIGGER Concert_Trig 
 BEFORE INSERT ON Concert 
@@ -122,7 +128,7 @@ BEGIN
   INTO   :new.cid
   FROM   dual;
 END;
-
+/
 
 CREATE OR REPLACE TRIGGER ConcertLocation_Trig 
 BEFORE INSERT ON ConcertLocation 
@@ -132,14 +138,9 @@ BEGIN
   INTO   :new.clid
   FROM   dual;
 END;
+/
 
 
---create sequences
-CREATE SEQUENCE artist_seq START WITH 1;
-CREATE SEQUENCE genre_seq START WITH 1;
-CREATE SEQUENCE appUser_seq START WITH 1;
-CREATE SEQUENCE concert_seq START WITH 1;
-CREATE SEQUENCE concertLocation_seq START WITH 1;
 
 --Inserts
 insert into Artist values (-1, 'UFO361');
