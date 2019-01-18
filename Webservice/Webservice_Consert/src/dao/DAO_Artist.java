@@ -24,18 +24,19 @@ public class DAO_Artist {
     private String myUrl = propertyFR.getUrl();
     private String username = propertyFR.getUsername();
     private String password = propertyFR.getPassword();
+    private static DAO_Artist daoArtist;
     
 	/**
 	 * 
 	 */
-	public DAO_Artist() {
+	private DAO_Artist() {
 		super();
 	}
 	
 	public void insertArtist(String artistname) throws SQLException {
 		Connection conn = DriverManager.getConnection(myUrl, username, password);
 		Statement st = conn.createStatement();
-		int id = 1000;
+		int id = -1;
 		
 		st.executeUpdate("insert into Artist values (" + id + ",'" + artistname + "')");
 		
@@ -62,5 +63,38 @@ public class DAO_Artist {
 		conn.close();
 		
 		return allArtists;
+	}
+	
+	public Artist getArtistById(int artistId) throws ClassNotFoundException, SQLException  {
+		Artist artist = null;
+		String query = "select AID, AName from Artist where AID = " + artistId;
+		
+		Class.forName(this.myDriver);
+		Connection conn = DriverManager.getConnection(myUrl, username, password);
+		
+		Statement st = conn.createStatement();
+		ResultSet rs = st.executeQuery(query);
+		
+		
+		
+		while (rs.next()) {
+			artist = new Artist(rs.getInt("AID"), rs.getString("AName"));
+		}
+		
+		st.close();
+		conn.close();
+		
+		return artist;
+	}
+
+	/**
+	 * @return the daoArtist
+	 */
+	public static DAO_Artist getDaoArtist() {
+		if(DAO_Artist.daoArtist == null) {
+			DAO_Artist.daoArtist = new DAO_Artist();
+		}
+		
+		return DAO_Artist.daoArtist;
 	}
 }
