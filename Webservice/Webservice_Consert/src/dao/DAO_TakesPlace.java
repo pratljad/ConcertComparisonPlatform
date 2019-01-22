@@ -56,12 +56,12 @@ public class DAO_TakesPlace {
 		
 		Statement st = conn.createStatement();
 		ResultSet rs = st.executeQuery(query);
-		
+		/*
 		while (rs.next()) {
 			Concert concert = this.daoConcert.getConcertById(rs.getInt("CID"));
 			ConcertLocation concertLocation = this.daoConcertLocation.getConcertLocationById(rs.getInt("CLID"));
 			allTakesPlaces.add(new TakesPlace(concert, concertLocation));
-		}
+		}*/
 		
 		st.close();
 		conn.close();

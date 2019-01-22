@@ -50,7 +50,7 @@ public class DAO_Concert {
 	
 	public Set<Concert> getAllConcerts() throws ClassNotFoundException, SQLException  {
 		Set<Concert> allConcerts = new HashSet<Concert>();
-		String query = "select CID, AID, ConcertDate,Description from Concert";
+		String query = "select CID, AID, ConcertDate, Title from Concert";
 		
 		Class.forName(this.myDriver);
 		Connection conn = DriverManager.getConnection(myUrl, username, password);
@@ -62,7 +62,7 @@ public class DAO_Concert {
 		
 		while (rs.next()) {
 			Artist artist = daoArtist.getArtistById(rs.getInt("AID"));
-			allConcerts.add(new Concert(rs.getInt("CID"), artist, rs.getDate("ConcertDate"), rs.getString("Description")));
+			allConcerts.add(new Concert(rs.getInt("CID"), artist, rs.getDate("ConcertDate"), rs.getString("Title")));
 		}
 		
 		st.close();
@@ -72,9 +72,9 @@ public class DAO_Concert {
 	}
 	
 	
-	public Concert getConcertById(int concertId) throws ClassNotFoundException, SQLException  {
-		Concert concert = null;
-		String query = "select CID, AID, ConcertDate,Description from Concert where CID = " + concertId;
+	public Set<Concert> getConcertByName(String artistname) throws ClassNotFoundException, SQLException  {
+		Set<Concert> concerts = new HashSet<Concert>();
+		String query = "select c.CID, c.AID, c.ConcertDate,c.Title from Concert c join Artist a on a.AID = c.AID where a.ANAME = '" + artistname + "'";
 		
 		Class.forName(this.myDriver);
 		Connection conn = DriverManager.getConnection(myUrl, username, password);
@@ -86,13 +86,13 @@ public class DAO_Concert {
 		
 		while (rs.next()) {
 			Artist artist = daoArtist.getArtistById(rs.getInt("AID"));
-			concert = new Concert(rs.getInt("CID"), artist, rs.getDate("ConcertDate"), rs.getString("Description"));
+			concerts.add(new Concert(rs.getInt("CID"), artist, rs.getDate("ConcertDate"), rs.getString("Title")));
 		}
 		
 		st.close();
 		conn.close();
 		
-		return concert;
+		return concerts;
 	}
 	
 	/**

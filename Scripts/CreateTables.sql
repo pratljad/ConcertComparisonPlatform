@@ -58,7 +58,7 @@ create table Concert (
     CID int,
     AID int,
     ConcertDate date,
-    Description varchar2(500),
+    Title varchar2(500),
     foreign key (AID) references Artist(AID)
 );
 ALTER TABLE Concert ADD (

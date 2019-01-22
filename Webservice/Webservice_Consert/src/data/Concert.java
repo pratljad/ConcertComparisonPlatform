@@ -13,7 +13,7 @@ public class Concert {
 	private int cid = -1;
 	private Artist artist = null;
 	private Date concertDate = null;
-	private String description = "";
+	private String title = "";
 	
 	/**
 	 * @param cid
@@ -21,12 +21,12 @@ public class Concert {
 	 * @param concertDate
 	 * @param description
 	 */
-	public Concert(int cid, Artist artist, Date concertDate, String description) {
+	public Concert(int cid, Artist artist, Date concertDate, String title) {
 		super();
 		this.cid = cid;
 		this.artist = artist;
 		this.concertDate = concertDate;
-		this.description = description;
+		this.title = title;
 	}
 	
 	public String getJSON() {
@@ -40,7 +40,7 @@ public class Concert {
 		concertJSON += "\"Concert Date\": " + "\""  + this.concertDate + "\",";
 		
 		concertJSON += newLine;
-		concertJSON += "\"Description\": " + "\""  + this.description + "\"";
+		concertJSON += "\"Description\": " + "\""  + this.title + "\"";
 		
 		concertJSON += newLine;
 		concertJSON += "}";
@@ -79,15 +79,15 @@ public class Concert {
 	/**
 	 * @return the description
 	 */
-	public String getDescription() {
-		return description;
+	public String getTitle() {
+		return title;
 	}
 
 	/**
 	 * @param description the description to set
 	 */
-	public void setDescription(String description) {
-		this.description = description;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	/**
