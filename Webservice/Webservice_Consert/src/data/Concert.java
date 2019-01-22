@@ -28,7 +28,26 @@ public class Concert {
 		this.concertDate = concertDate;
 		this.description = description;
 	}
-
+	
+	public String getJSON() {
+		String concertJSON = "{";
+		String newLine = System.getProperty("line.separator");
+		
+		concertJSON += newLine;
+		concertJSON += "\"Artist\": " + "\"" + this.artist.getAName() + "\",";
+		
+		concertJSON += newLine;
+		concertJSON += "\"Concert Date\": " + "\""  + this.concertDate + "\",";
+		
+		concertJSON += newLine;
+		concertJSON += "\"Description\": " + "\""  + this.description + "\"";
+		
+		concertJSON += newLine;
+		concertJSON += "}";
+		
+		return concertJSON;
+	}
+	
 	/**
 	 * @return the artist
 	 */

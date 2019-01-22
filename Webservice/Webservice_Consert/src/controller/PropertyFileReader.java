@@ -29,7 +29,7 @@ public class PropertyFileReader {
 		super();
 		
 		try {
-			this.input = new FileInputStream("./dao.properties");
+			this.input = new FileInputStream("/usr/local/apache-tomcat9/webapps/dao.properties");
 			
 			this.prop.load(input);
 			
