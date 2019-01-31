@@ -3,17 +3,13 @@
  */
 package dao;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.HashSet;
 import java.util.Set;
 
-import controller.PropertyFileReader;
+import controller.DatabaseController;
 import data.Affilation;
-import data.AppUser;
 import data.Artist;
 import data.Genre;
 
@@ -22,13 +18,9 @@ import data.Genre;
  * This class shows the affilation between artist and music genre
  */
 public class DAO_Affilation {
-	private PropertyFileReader propertyFR = PropertyFileReader.getPropFileReader();
-	private String myDriver = propertyFR.getDriver();
-    private String myUrl = propertyFR.getUrl();
-    private String username = propertyFR.getUsername();
-    private String password = propertyFR.getPassword();
     private DAO_Artist daoArtist = DAO_Artist.getDaoArtist();
     private DAO_Genre daoGenre = DAO_Genre.getDaoGenre();
+    private DatabaseController dbController = DatabaseController.getDbController();
     
     private static DAO_Affilation daoAffilation;
     
@@ -39,24 +31,30 @@ public class DAO_Affilation {
 		super();
 	}
 	
+	/**
+	 * This method is inserting an affilation object in a sql table
+	 * @param artistId
+	 * @param genreId
+	 * @throws SQLException
+	 */
 	public void insertAffilation(int artistId, int genreId) throws SQLException {
-		Connection conn = DriverManager.getConnection(myUrl, username, password);
-		Statement st = conn.createStatement();
+		String query = "insert into Affilation values (" + artistId + "," + genreId + ")";
 		
-		st.executeUpdate("insert into Affilation values (" + artistId + "," + genreId + ")");
-		
-		conn.close();
+		dbController.insert(query);
+		dbController.closeConnection();
 	}
 	
+	/**
+	 * This method is getting all affilations
+	 * @return
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 */
 	public Set<Affilation> getAllAffilation() throws ClassNotFoundException, SQLException  {
 		Set<Affilation> allAffilation = new HashSet<Affilation>();
 		String query = "select AID, GID from Affilation";
 		
-		Class.forName(this.myDriver);
-		Connection conn = DriverManager.getConnection(myUrl, username, password);
-		
-		Statement st = conn.createStatement();
-		ResultSet rs = st.executeQuery(query);
+		ResultSet rs = dbController.select(query);
 		
 		while (rs.next()) {
 			Genre genre = this.daoGenre.getGenreById(rs.getInt("GID"));
@@ -64,8 +62,7 @@ public class DAO_Affilation {
 			allAffilation.add(new Affilation(artist, genre));
 		}
 		
-		st.close();
-		conn.close();
+		dbController.closeConnection();
 		
 		return allAffilation;
 	}

@@ -50,7 +50,7 @@ public class ConsertWS {
 		try {
 			allConcerts = daoConcert.getAllConcerts();
 
-			if (allConcerts.isEmpty() == false) {
+			if (!allConcerts.isEmpty()) {
 				res = "[";
 			}
 
@@ -68,11 +68,10 @@ public class ConsertWS {
 				}
 			}
 
-			if (allConcerts.isEmpty() == false) {
+			if (!allConcerts.isEmpty()) {
 				res += "]";
 			}
 		} catch (ClassNotFoundException | SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -97,7 +96,7 @@ public class ConsertWS {
 			try {
 				allConcerts = daoConcert.getConcertByName(myartistname);
 
-				if (allConcerts.isEmpty() == false) {
+				if (!allConcerts.isEmpty()) {
 					res = "[";
 				}
 
@@ -115,11 +114,10 @@ public class ConsertWS {
 					}
 				}
 
-				if (allConcerts.isEmpty() == false) {
+				if (!allConcerts.isEmpty()) {
 					res += "]";
 				}
 			} catch (ClassNotFoundException | SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 

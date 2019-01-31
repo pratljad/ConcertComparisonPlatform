@@ -3,15 +3,12 @@
  */
 package dao;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.HashSet;
 import java.util.Set;
 
-import controller.PropertyFileReader;
+import controller.DatabaseController;
 import data.AppUser;
 import data.Artist;
 import data.Favourites;
@@ -21,12 +18,8 @@ import data.Favourites;
  * This class is a dao for the favourite artists of an user
  */
 public class DAO_Favourites {
-	private PropertyFileReader propertyFR = PropertyFileReader.getPropFileReader();
-	private String myDriver = propertyFR.getDriver();
-    private String myUrl = propertyFR.getUrl();
-    private String username = propertyFR.getUsername();
-    private String password = propertyFR.getPassword();
     private DAO_Artist daoArtist = DAO_Artist.getDaoArtist();
+    private DatabaseController dbController = DatabaseController.getDbController();
     private DAO_AppUser daoAppUser = DAO_AppUser.getDaoAppUser();
     
     private static DAO_Favourites daoFavourites;
@@ -38,24 +31,30 @@ public class DAO_Favourites {
 		super();
 	}
 	
+	/**
+	 * This method is inserting a Favourites object in a sql table
+	 * @param userId
+	 * @param artistId
+	 * @throws SQLException
+	 */
 	public void insertFavourites(int userId, int artistId) throws SQLException {
-		Connection conn = DriverManager.getConnection(myUrl, username, password);
-		Statement st = conn.createStatement();
+		String query = "insert into Favourites values (" + userId + "," + artistId + ")";
 		
-		st.executeUpdate("insert into Favourites values (" + userId + "," + artistId + ")");
-		
-		conn.close();
+		dbController.insert(query);
+		dbController.closeConnection();
 	}
 	
+	/**
+	 * This method is getting all favourites from the sql table
+	 * @return
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 */
 	public Set<Favourites> getAllFavourites() throws ClassNotFoundException, SQLException  {
 		Set<Favourites> allFavourites = new HashSet<Favourites>();
 		String query = "select UserID, AID from Favourites";
 		
-		Class.forName(this.myDriver);
-		Connection conn = DriverManager.getConnection(myUrl, username, password);
-		
-		Statement st = conn.createStatement();
-		ResultSet rs = st.executeQuery(query);
+		ResultSet rs = dbController.select(query);
 		
 		while (rs.next()) {
 			AppUser appUser = this.daoAppUser.getAppUserById(rs.getInt("UserID"));
@@ -63,8 +62,7 @@ public class DAO_Favourites {
 			allFavourites.add(new Favourites(appUser, artist));
 		}
 		
-		st.close();
-		conn.close();
+		dbController.closeConnection();
 		
 		return allFavourites;
 	}

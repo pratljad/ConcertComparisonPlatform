@@ -3,15 +3,12 @@
  */
 package dao;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.HashSet;
 import java.util.Set;
 
-import controller.PropertyFileReader;
+import controller.DatabaseController;
 import data.Artist;
 
 /**
@@ -19,12 +16,8 @@ import data.Artist;
  * This class is the dao of the artist
  */
 public class DAO_Artist {
-	private PropertyFileReader propertyFR = PropertyFileReader.getPropFileReader();
-	private String myDriver = propertyFR.getDriver();
-    private String myUrl = propertyFR.getUrl();
-    private String username = propertyFR.getUsername();
-    private String password = propertyFR.getPassword();
     private static DAO_Artist daoArtist;
+    private DatabaseController dbController = DatabaseController.getDbController();
     
 	/**
 	 * 
@@ -33,56 +26,59 @@ public class DAO_Artist {
 		super();
 	}
 	
+	/**
+	 * This method is inserting an Artist object in a sql table
+	 * @param artistname
+	 * @throws SQLException
+	 */
 	public void insertArtist(String artistname) throws SQLException {
-		Connection conn = DriverManager.getConnection(myUrl, username, password);
-		Statement st = conn.createStatement();
 		int id = -1;
 		
-		st.executeUpdate("insert into Artist values (" + id + ",'" + artistname + "')");
+		String query = "insert into Artist values (" + id + ",'" + artistname + "')";
 		
-		conn.close();
+		dbController.insert(query);
+		dbController.closeConnection();
 	}
 	
+	/**
+	 * This method is getting all artists from the sql tables
+	 * @return
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 */
 	public Set<Artist> getAllArtists() throws ClassNotFoundException, SQLException  {
 		Set<Artist> allArtists = new HashSet<Artist>();
 		String query = "select AID, AName from Artist";
 		
-		Class.forName(this.myDriver);
-		Connection conn = DriverManager.getConnection(myUrl, username, password);
-		
-		Statement st = conn.createStatement();
-		ResultSet rs = st.executeQuery(query);
-		
-		
+		ResultSet rs = dbController.select(query);
 		
 		while (rs.next()) {
 			allArtists.add(new Artist(rs.getInt("AID"), rs.getString("AName")));
 		}
 		
-		st.close();
-		conn.close();
+		dbController.closeConnection();
 		
 		return allArtists;
 	}
 	
+	/**
+	 * This method is getting an Artist by his id from the sql table
+	 * @param artistId
+	 * @return
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 */
 	public Artist getArtistById(int artistId) throws ClassNotFoundException, SQLException  {
 		Artist artist = null;
 		String query = "select AID, AName from Artist where AID = " + artistId;
 		
-		Class.forName(this.myDriver);
-		Connection conn = DriverManager.getConnection(myUrl, username, password);
-		
-		Statement st = conn.createStatement();
-		ResultSet rs = st.executeQuery(query);
-		
-		
+		ResultSet rs = dbController.select(query);
 		
 		while (rs.next()) {
 			artist = new Artist(rs.getInt("AID"), rs.getString("AName"));
 		}
 		
-		st.close();
-		conn.close();
+		dbController.closeConnection();
 		
 		return artist;
 	}

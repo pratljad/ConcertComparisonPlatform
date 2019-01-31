@@ -3,17 +3,12 @@
  */
 package dao;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.HashSet;
 import java.util.Set;
 
-import controller.PropertyFileReader;
-import data.Concert;
-import data.ConcertLocation;
+import controller.DatabaseController;
 import data.TakesPlace;
 
 /**
@@ -21,12 +16,8 @@ import data.TakesPlace;
  * This dao is responsible for the TakesPlace class
  */
 public class DAO_TakesPlace {
-	private PropertyFileReader propertyFR = PropertyFileReader.getPropFileReader();
-	private String myDriver = propertyFR.getDriver();
-    private String myUrl = propertyFR.getUrl();
-    private String username = propertyFR.getUsername();
-    private String password = propertyFR.getPassword();
     private DAO_Concert daoConcert = DAO_Concert.getDaoConcert();
+    private DatabaseController dbController = DatabaseController.getDbController();
     private DAO_Concertlocation daoConcertLocation = DAO_Concertlocation.getDaoConcertLocation();
     
     private static DAO_TakesPlace daoTakesPlace;
@@ -38,33 +29,40 @@ public class DAO_TakesPlace {
 		super();
 	}
 	
+	/**
+	 * This method is inserting the takes_place object in the sql table
+	 * @param concertId
+	 * @param concertLocationId
+	 * @throws SQLException
+	 */
 	public void insertTakesPlace(int concertId, int concertLocationId) throws SQLException {
-		Connection conn = DriverManager.getConnection(myUrl, username, password);
-		Statement st = conn.createStatement();
+		String query = "insert into Takes_Place values (" + concertId + "," + concertLocationId + ")";
 		
-		st.executeUpdate("insert into Takes_Place values (" + concertId + "," + concertLocationId + ")");
-		
-		conn.close();
+		dbController.insert(query);
+		dbController.closeConnection();
 	}
 	
+	/**
+	 * This method is getting all takes_place objects from the sql table
+	 * @return
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 */
 	public Set<TakesPlace> getAllTakesPlace() throws ClassNotFoundException, SQLException  {
 		Set<TakesPlace> allTakesPlaces = new HashSet<TakesPlace>();
 		String query = "select CID, CLID from Takes_Place";
 		
-		Class.forName(this.myDriver);
-		Connection conn = DriverManager.getConnection(myUrl, username, password);
+		ResultSet rs = dbController.select(query);
 		
-		Statement st = conn.createStatement();
-		ResultSet rs = st.executeQuery(query);
-		/*
+		//TODO: Write getconcert by id
+		/*/
 		while (rs.next()) {
 			Concert concert = this.daoConcert.getConcertById(rs.getInt("CID"));
 			ConcertLocation concertLocation = this.daoConcertLocation.getConcertLocationById(rs.getInt("CLID"));
 			allTakesPlaces.add(new TakesPlace(concert, concertLocation));
 		}*/
 		
-		st.close();
-		conn.close();
+		dbController.closeConnection();
 		
 		return allTakesPlaces;
 	}

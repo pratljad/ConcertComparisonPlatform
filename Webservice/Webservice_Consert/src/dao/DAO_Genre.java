@@ -3,15 +3,12 @@
  */
 package dao;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.HashSet;
 import java.util.Set;
 
-import controller.PropertyFileReader;
+import controller.DatabaseController;
 import data.Genre;
 
 /**
@@ -19,11 +16,7 @@ import data.Genre;
  * This class is the dao of genre
  */
 public class DAO_Genre {
-	private PropertyFileReader propertyFR = PropertyFileReader.getPropFileReader();
-	private String myDriver = propertyFR.getDriver();
-    private String myUrl = propertyFR.getUrl();
-    private String username = propertyFR.getUsername();
-    private String password = propertyFR.getPassword();
+    private DatabaseController dbController = DatabaseController.getDbController();
     private static DAO_Genre daoGenre;
     
 	/**
@@ -33,56 +26,57 @@ public class DAO_Genre {
 		super();
 	}
 	
+	/**
+	 * This method is inserting a genre in the sql table
+	 * @param description
+	 * @throws SQLException
+	 */
 	public void insertGenre(String description) throws SQLException {
-		Connection conn = DriverManager.getConnection(myUrl, username, password);
-		Statement st = conn.createStatement();
 		int id = -1;
+		String query = "insert into Genre values (" + id + ",'" + description + "')";
 		
-		st.executeUpdate("insert into Genre values (" + id + ",'" + description + "')");
-		
-		conn.close();
+		dbController.insert(query);
+		dbController.closeConnection();
 	}
 	
+	/**
+	 * This method is getting all genres from a sql table
+	 * @return
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 */
 	public Set<Genre> getAllGenres() throws ClassNotFoundException, SQLException  {
 		Set<Genre> allGenres = new HashSet<Genre>();
 		String query = "select GID, Description from Genre";
 		
-		Class.forName(this.myDriver);
-		Connection conn = DriverManager.getConnection(myUrl, username, password);
-		
-		Statement st = conn.createStatement();
-		ResultSet rs = st.executeQuery(query);
-		
-		
+		ResultSet rs = dbController.select(query);
 		
 		while (rs.next()) {
 			allGenres.add(new Genre(rs.getInt("GID"), rs.getString("Description")));
 		}
 		
-		st.close();
-		conn.close();
-		
+		dbController.closeConnection();		
 		return allGenres;
 	}
 	
+	/**
+	 * This method is getting a genre by his id from the sql table
+	 * @param genreId
+	 * @return
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 */
 	public Genre getGenreById(int genreId) throws ClassNotFoundException, SQLException  {
 		Genre genre = null;
 		String query = "select GID, Description from Genre where GID = " + genreId;
 		
-		Class.forName(this.myDriver);
-		Connection conn = DriverManager.getConnection(myUrl, username, password);
-		
-		Statement st = conn.createStatement();
-		ResultSet rs = st.executeQuery(query);
-		
-		
+		ResultSet rs = dbController.select(query);
 		
 		while (rs.next()) {
 			genre = new Genre(rs.getInt("GID"), rs.getString("Description"));
 		}
 		
-		st.close();
-		conn.close();
+		dbController.closeConnection();
 		
 		return genre;
 	}

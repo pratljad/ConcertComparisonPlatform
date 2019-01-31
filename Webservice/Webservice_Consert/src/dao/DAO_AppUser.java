@@ -3,15 +3,12 @@
  */
 package dao;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.HashSet;
 import java.util.Set;
 
-import controller.PropertyFileReader;
+import controller.DatabaseController;
 import data.AppUser;
 
 /**
@@ -19,12 +16,8 @@ import data.AppUser;
  *
  */
 public class DAO_AppUser {
-	private PropertyFileReader propertyFR = PropertyFileReader.getPropFileReader();
-	private String myDriver = propertyFR.getDriver();
-    private String myUrl = propertyFR.getUrl();
-    private String username = propertyFR.getUsername();
-    private String password = propertyFR.getPassword();
     private static DAO_AppUser daoAppUser;
+    private DatabaseController dbController = DatabaseController.getDbController();
     
 	/**
 	 * 
@@ -33,57 +26,59 @@ public class DAO_AppUser {
 		super();
 	}
 	
+	/**
+	 * This method is inserting a AppUser object in a sql table
+	 * @param appUsername
+	 * @param appPassword
+	 * @throws SQLException
+	 */
 	public void insertAppUser(String appUsername, String appPassword) throws SQLException {
-		Connection conn = DriverManager.getConnection(myUrl, username, password);
-		Statement st = conn.createStatement();
 		int id = -1;
+		String query = "insert into AppUser values (" + id + ",'" + appUsername + "','" + appPassword + "')";
 		
-		st.executeUpdate("insert into AppUser values (" + id + ",'" + appUsername + "','" + appPassword + "')");
-		
-		conn.close();
+		dbController.insert(query);
+		dbController.closeConnection();
 	}
 	
+	/**
+	 * This method is getting all app users from the sql table
+	 * @return
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 */
 	public Set<AppUser> getAllAppUsers() throws ClassNotFoundException, SQLException  {
 		Set<AppUser> allAppUsers = new HashSet<AppUser>();
 		String query = "select UserID, Username, UPassword from AppUser";
 		
-		Class.forName(this.myDriver);
-		Connection conn = DriverManager.getConnection(myUrl, username, password);
-		
-		Statement st = conn.createStatement();
-		ResultSet rs = st.executeQuery(query);
-		
-		
+		ResultSet rs = dbController.select(query);
 		
 		while (rs.next()) {
 			allAppUsers.add(new AppUser(rs.getInt("UserID"), rs.getString("Username"), rs.getString("UPassword")));
 		}
 		
-		st.close();
-		conn.close();
+		dbController.closeConnection();
 		
 		return allAppUsers;
 	}
 	
-	
+	/**
+	 * This method is getting an user by his id from the sql table
+	 * @param userId
+	 * @return
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 */
 	public AppUser getAppUserById(int userId) throws ClassNotFoundException, SQLException  {
 		AppUser appUser = null;
 		String query = "select UserID, Username, UPassword from AppUser where UserID = " + userId;
 		
-		Class.forName(this.myDriver);
-		Connection conn = DriverManager.getConnection(myUrl, username, password);
-		
-		Statement st = conn.createStatement();
-		ResultSet rs = st.executeQuery(query);
-		
-		
+		ResultSet rs = dbController.select(query);
 		
 		while (rs.next()) {
 			appUser = new AppUser(rs.getInt("UserID"), rs.getString("Username"), rs.getString("UPassword"));
 		}
 		
-		st.close();
-		conn.close();
+		dbController.closeConnection();
 		
 		return appUser;
 	}

@@ -23,7 +23,7 @@ public class PropertyFileReader {
 	private static PropertyFileReader propFileReader;
 	
 	/**
-	 * 
+	 * This gets all propertys from the property file
 	 */
 	private PropertyFileReader() {
 		super();
@@ -49,7 +49,8 @@ public class PropertyFileReader {
 	
 	
 	/**
-	 * @return the propFileReader
+	 * 
+	 * @return
 	 */
 	public static PropertyFileReader getPropFileReader() {
 		if(PropertyFileReader.propFileReader == null) {
